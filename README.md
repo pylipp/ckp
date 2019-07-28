@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pylipp/ckp.svg?branch=master)](https://travis-ci.org/pylipp/ckp)
+
 ## `ckp`
 
 > Command line utility for Copying Keepass Passwords
@@ -8,7 +10,11 @@
 
 ## Usage
 
+Set up a database at `~/.database.kdbx` and add some entries (or move an existing database). Query an entry from the command line by running
+
     ckp <entry>
+
+You're prompted for the master password. If correct, and if the specified entry exists, the password is copied to the system clipboard (check the `pyperclip` package for system dependencies). The system clipboard is cleared after ten seconds.
 
 ## Testing
 

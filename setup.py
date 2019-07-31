@@ -13,7 +13,7 @@ setup(
     author_email='beth.aleph@yahoo.de',
     license='GPLv3',
     #classifiers=[],
-    packages=find_packages(exclude=['test', 'doc']),
+    py_modules=["main"],
     entry_points = {
         'console_scripts': ['ckp = main:main']
         },

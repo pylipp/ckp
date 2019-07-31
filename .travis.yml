@@ -12,6 +12,7 @@ install:
 
 script:
     - coverage run --source . test.py
+    - ckp --help
 
 after_success:
     - coveralls

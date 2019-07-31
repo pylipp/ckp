@@ -67,5 +67,9 @@ def main():
     """Main entry point of the application. The entry to look up the password
     for is constructed from all command line arguments.
     """
+    if sys.argv[1:] == ["--help"]:
+        print("Usage: ckp <entry>")
+        sys.exit()
+
     entry_name = " ".join(sys.argv[1:])
     copy_entry(entry_name)

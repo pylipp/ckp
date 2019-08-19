@@ -20,5 +20,13 @@ You're prompted for the master password. If correct, and if the specified entry 
 
     git clone https://github.com/pylipp/ckp
     cd ckp
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -U pip
     pip install -e .
     python test.py
+
+## Releasing
+
+- increase version number in `setup.py`, stage and commit
+- run `make release`

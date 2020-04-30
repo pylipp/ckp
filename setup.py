@@ -21,4 +21,9 @@ setup(
         "pykeepass==2.7.2",
         "pyperclip==1.5.32",
     ],
+    extras_require={
+        "dev": [
+            "coverage==5.1",
+        ],
+    },
 )

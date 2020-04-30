@@ -6,8 +6,10 @@ all:
 	@echo "Available: install, release, coverage"
 
 coverage:
+	coverage erase
 	coverage run --source . test.py
 	coverage report
+	coverage html
 
 install:
 	pip install -e .

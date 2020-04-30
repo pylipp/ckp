@@ -17,4 +17,4 @@ install:
 release:
 	git tag v$(VERSION)
 	git push --tags origin master
-	hub release create -m "Release v$(VERSION)" v$(VERSION)
+	hub release create -m "Release v$(VERSION)" v$(VERSION) -e

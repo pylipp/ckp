@@ -5,7 +5,7 @@ with open('README.md') as readme:
 
 setup(
     name='ckp',
-    version="0.2",
+    version="0.3.0",
     description='TODO',
     long_description=long_description,
     url='https://github.com/pylipp/ckp',

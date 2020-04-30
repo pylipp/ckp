@@ -4,24 +4,29 @@ import getpass
 import sys
 import os
 import time
+import argparse
 
 import pykeepass
 import pyperclip
 
-def copy_entry(entry_name):
+DATABASE_FILEPATH = "~/.database.kdbx"
+
+
+def copy_entry(entry_name, database_filepath=None):
     """Copy the password corresponding to the given entry to the system
     clipboard.
     The user is prompted to give the correct master password to open the
-    database file. The function raises a SystemExit exception if the database
-    file is not found at `~/.database.kdbx`.
+    database file (default is `~/.database.kdbx` which can be overwritten). The
+    function raises a SystemExit if the database file is not found.
     The password is then copied to the system clipboard. A progress bar is
     displayed. After ten seconds, the clipboard is cleared.
     """
     while True:
         password = getpass.getpass()
         try:
+            database_filepath = database_filepath or DATABASE_FILEPATH
             kp = pykeepass.PyKeePass(
-                os.path.expanduser("~/.database.kdbx"), password=password)
+                os.path.expanduser(database_filepath), password=password)
             break
         except FileNotFoundError:
             raise SystemExit("Database file does not exist.")
@@ -63,13 +68,13 @@ def copy_entry(entry_name):
         pyperclip.copy("")
 
 
-def main():
-    """Main entry point of the application. The entry to look up the password
-    for is constructed from all command line arguments.
-    """
-    if sys.argv[1:] == ["--help"]:
-        print("Usage: ckp <entry>")
-        sys.exit()
+def main(args=None):
+    """Main entry point of the application."""
+    parser = argparse.ArgumentParser(description=globals()["__doc__"])
+    parser.add_argument("entry", help="name of the entry to retrieve")
+    parser.add_argument("-d", "--database-filepath",
+                        help="optional filepath of database. Default: {}".format(
+                            DATABASE_FILEPATH))
+    args = parser.parse_args(args)
 
-    entry_name = " ".join(sys.argv[1:])
-    copy_entry(entry_name)
+    copy_entry(args.entry, args.database_filepath)

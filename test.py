@@ -2,11 +2,14 @@ import unittest
 from unittest import mock
 import getpass
 import time
+import os
 
 import pyperclip
 import pykeepass
 
 import main
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class CkpTest(unittest.TestCase):
@@ -23,15 +26,15 @@ class CkpTest(unittest.TestCase):
         """Test prompting, looking up and copying of password as well as
         cleaning up of the system clipboard.
         """
-        main.copy_entry("Example")
+        main.main(["Example", "-d", os.path.join(ROOT_DIR, "database.kdbx")])
 
         for call, expected in zip(
                 pyperclip.copy.call_args_list, ["Password", ""]):
             self.assertEqual(call[0][0], expected)
 
     def test_missing_kdbx_file(self):
-        with mock.patch("pykeepass.PyKeePass", side_effect=FileNotFoundError):
-            self.assertRaises(SystemExit, main.copy_entry, "Entry")
+        self.assertRaises(
+            SystemExit, main.main, ["Entry", "-d", "/tmp/random.kdbx"])
 
 
 if __name__ == "__main__":

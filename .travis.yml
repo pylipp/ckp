@@ -8,7 +8,6 @@ python:
 install:
     - pip install .
     - pip install coveralls
-    - cp ./database.kdbx ~/.database.kdbx
 
 script:
     - coverage run --source . test.py

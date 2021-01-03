@@ -3,6 +3,7 @@
 import getpass
 import sys
 import os
+import shutil
 import time
 import argparse
 
@@ -50,7 +51,7 @@ def copy_entry(entry_name, database_filepath=None):
         pyperclip.copy(entry.password)
         print("Password has been copied to clipboard!")
 
-        terminal_width = os.get_terminal_size().columns
+        terminal_width = shutil.get_terminal_size().columns
         time_left = 50  # 50 increments of 0.2s = 10s
         increment = int(terminal_width / time_left)
         residual = terminal_width - time_left * increment

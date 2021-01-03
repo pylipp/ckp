@@ -46,7 +46,7 @@ def copy_entry(entry_name, database_filepath=None):
         print("{}Choose from:".format(message), file=sys.stderr)
         print('\n'.join(("{e.title} ({e.username})".format(e=e) for e in kp.entries)),
             file=sys.stderr)
-        sys.exit(1)
+        raise SystemExit()
     else:
         pyperclip.copy(entry.password)
         print("Password has been copied to clipboard!")

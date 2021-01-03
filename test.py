@@ -10,6 +10,7 @@ import pykeepass
 import main
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_FILEPATH = os.path.join(ROOT_DIR, "database.kdbx")
 
 
 class CkpTest(unittest.TestCase):
@@ -26,7 +27,7 @@ class CkpTest(unittest.TestCase):
         """Test prompting, looking up and copying of password as well as
         cleaning up of the system clipboard.
         """
-        main.main(["Example", "-d", os.path.join(ROOT_DIR, "database.kdbx")])
+        main.main(["Example", "-d", DATABASE_FILEPATH])
 
         for call, expected in zip(
                 pyperclip.copy.call_args_list, ["Password", ""]):
@@ -35,6 +36,10 @@ class CkpTest(unittest.TestCase):
     def test_missing_kdbx_file(self):
         self.assertRaises(
             SystemExit, main.main, ["Entry", "-d", "/tmp/random.kdbx"])
+
+    def test_invalid_entry(self):
+        self.assertRaises(
+            SystemExit, main.main, ["Entry", "-d", DATABASE_FILEPATH])
 
 
 if __name__ == "__main__":

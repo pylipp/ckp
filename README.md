@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pylipp/ckp.svg?branch=master)](https://travis-ci.org/pylipp/ckp)
+![Build Status](https://github.com/pylipp/ckp/workflows/CI/badge.svg)
 
 ## `ckp`
 

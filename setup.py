@@ -6,13 +6,12 @@ with open('README.md') as readme:
 setup(
     name='ckp',
     use_scm_version=True,
-    description='TODO',
+    description='Command line utility for Copying Keepass Passwords',
     long_description=long_description,
     url='https://github.com/pylipp/ckp',
     author='Philipp Metzner',
     author_email='beth.aleph@yahoo.de',
     license='GPLv3',
-    #classifiers=[],
     py_modules=["main"],
     entry_points = {
         'console_scripts': ['ckp = main:main']

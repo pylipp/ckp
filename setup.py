@@ -5,7 +5,7 @@ with open('README.md') as readme:
 
 setup(
     name='ckp',
-    version="0.3.0",
+    use_scm_version=True,
     description='TODO',
     long_description=long_description,
     url='https://github.com/pylipp/ckp',
@@ -17,6 +17,9 @@ setup(
     entry_points = {
         'console_scripts': ['ckp = main:main']
         },
+    setup_requires=[
+        "setuptools_scm",
+    ],
     install_requires=[
         "pykeepass==2.7.2",
         "pyperclip==1.5.32",

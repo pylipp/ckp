@@ -47,5 +47,5 @@ Full command line help:
 
 ## Releasing
 
-- increase version number in `setup.py`, stage and commit
-- run `make release`
+- tag latest commit with according version number
+- run `git push --tags origin master`

@@ -1,9 +1,7 @@
-VERSION=$(shell grep version setup.py | cut -d= -f2 | sed 's/[",]//g')
-
-.PHONY: install release coverage
+.PHONY: install coverage
 
 all:
-	@echo "Available: install, release, coverage"
+	@echo "Available: install, coverage"
 
 coverage:
 	coverage erase
@@ -13,7 +11,3 @@ coverage:
 
 install:
 	pip install -e .
-
-release:
-	git tag v$(VERSION)
-	git push --tags origin master
